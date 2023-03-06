@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class UserName
+public class UserNameSolution
 {
     /** The list of possible user names, based on a user�s first and last names
      * and initialized by the constructor.
@@ -10,8 +10,13 @@ public class UserName
      * Precondition: firstName and lastName have length greater than 0
      * and contain only uppercase and lowercase letters.
      */
-    public UserName(String firstName, String lastName)
-    { /* to be implemented in part (a) */ }
+    public UserNameSolution(String firstName, String lastName)
+    {
+        possibleNames = new ArrayList<String>();
+        for (int i = 0; i < firstName.length(); i++) {
+            possibleNames.add(lastName  + firstName.substring(0, i +1));
+        }
+    }
 
 
     /** Returns true if arr contains name, and false otherwise. */
@@ -31,8 +36,17 @@ public class UserName
     /** Removes strings from possibleNames that are found in usedNames as described in part (b).
      */
     public void setAvailableUserNames(String[] usedNames)
-    { /* to be implemented in part (b) */ }
-
+    {
+        for (int i = 0; i < possibleNames.size(); i++) {
+            if (isUsed(possibleNames.get(i), usedNames)) {
+                possibleNames.remove(i);
+                i--;
+            }
+        }
+    }
     /** gets contents of possibleNames */
     //put the method for that here...
+    public ArrayList<String> getPossibleNames() {
+        return possibleNames;
+    }
 }
